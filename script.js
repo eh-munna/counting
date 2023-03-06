@@ -4,17 +4,17 @@
 const getId = (id) => document.getElementById(id);
 
 // initial value
-let count = 0;
+let autoCount = 0;
 
 // store interval value
-let intervalId;
+let autoIntervalId;
 
 // start the counting
 
 const autoStartCount = () => {
-  intervalId = setInterval(() => {
-    count++;
-    getId('auto-count-number').innerText = count;
+  autoIntervalId = setInterval(() => {
+    autoCount++;
+    getId('auto-count-number').innerText = autoCount;
   }, 1000);
 };
 
@@ -22,14 +22,15 @@ const autoStartCount = () => {
 
 getId('auto-start-count').addEventListener('click', function () {
   getId('auto-start-count').classList.add('hidden');
-  getId('auto-resume-count').classList.remove('hidden');
   autoStartCount();
+  getId('auto-stop-count').classList.remove('hidden');
+  getId('auto-reset-count').classList.remove('hidden');
 });
 
 // stop function
 
 const autoStopCount = () => {
-  clearInterval(intervalId);
+  clearInterval(autoIntervalId);
 };
 
 // resume the countdown
@@ -41,21 +42,25 @@ const autoResumeCount = () => {
 // reset countdown
 
 const autoResetCount = () => {
-  count = 0;
+  autoCount = 0;
   autoStopCount();
-  getId('auto-count-number').innerText = count;
+  getId('auto-count-number').innerText = autoCount;
 };
 
 // resume button
 
 getId('auto-resume-count').addEventListener('click', function () {
   autoResumeCount();
+  getId('auto-resume-count').classList.add('hidden');
+  getId('auto-stop-count').classList.remove('hidden');
 });
 
 // stop button
 
 getId('auto-stop-count').addEventListener('click', function () {
   autoStopCount();
+  getId('auto-resume-count').classList.remove('hidden');
+  getId('auto-stop-count').classList.add('hidden');
 });
 
 // reset button
@@ -63,11 +68,14 @@ getId('auto-stop-count').addEventListener('click', function () {
 getId('auto-reset-count').addEventListener('click', function () {
   autoResetCount();
   getId('auto-start-count').classList.remove('hidden');
-  getId('auto-resume-count').classList.add('hidden');
+  getId('auto-stop-count').classList.add('hidden');
+  getId('auto-reset-count').classList.add('hidden');
 });
 
-// to store user inputted time
+// global
 
+let count = 0;
+let intervalId;
 let userDefineTime;
 
 // convert the value to a number
@@ -87,14 +95,18 @@ const startWatch = () => {
   getInput();
   if (isNaN(userDefineTime)) {
     alert(`Please provide a number`);
+    document.getElementById('start-count').classList.remove('hidden');
+    document.getElementById('reset-count').classList.add('hidden');
     return;
   } else {
+    document.getElementById('stop-count').classList.remove('hidden');
     intervalId = setInterval(() => {
       count++;
       document.getElementById('count-number').innerText = count;
       if (count === userDefineTime) {
         clearInterval(intervalId);
-        document.getElementById('start-count').classList.remove('hidden');
+        document.getElementById('stop-count').classList.add('hidden');
+        document.getElementById('reset-count').classList.remove('hidden');
       }
     }, 1000);
   }
@@ -104,6 +116,8 @@ const startWatch = () => {
 
 document.getElementById('start-count').addEventListener('click', function () {
   startWatch();
+  document.getElementById('start-count').classList.add('hidden');
+  document.getElementById('reset-count').classList.remove('hidden');
 });
 
 // stop function
@@ -149,5 +163,6 @@ document.getElementById('resume-count').addEventListener('click', function () {
 document.getElementById('reset-count').addEventListener('click', function () {
   resetWatch();
   document.getElementById('start-count').classList.remove('hidden');
-  document.getElementById('stop-count').classList.remove('hidden');
+  document.getElementById('stop-count').classList.add('hidden');
+  document.getElementById('reset-count').classList.add('hidden');
 });
