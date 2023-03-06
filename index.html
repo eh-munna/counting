@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counting Number</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container mx-auto px-2 md:px-4">
+        <div class="topic-heading mt-2 md:mt-4">
+          <h1 class="text-xl md:text-3xl font-bold text-center text-blue-600">
+            Automatic and User Specific Number Counting
+          </h1>
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-2 md:px-4">
+      <!-- automatic-count-started -->
+      <section class="automatic-count my-12">
+        <!-- Section Heading -->
+        <h3 class="text-center text-2xl mt-2 md:mt-4">Automatic Count</h3>
+        <div class="text-center">
+          <p id="auto-count-number" class="my-3 text-center text-xl">0</p>
+          <button id="auto-start-count" class="bg-lime-500 p-3 rounded-md mr-2">
+            Start
+          </button>
+          <button
+            type="button"
+            id="auto-stop-count"
+            class="bg-lime-500 p-3 rounded-md mr-2"
+          >
+            Stop
+          </button>
+          <button
+            id="auto-resume-count"
+            class="hidden bg-lime-500 p-3 rounded-md mr-2"
+          >
+            Resume
+          </button>
+          <button id="auto-reset-count" class="bg-lime-500 p-3 rounded-md mr-2">
+            Reset
+          </button>
+        </div>
+      </section>
+      <!-- automatic-count-ended -->
+
+      <!-- specific-count-started -->
+      <section class="specific-count my-12">
+        <div class="text-center">
+          <!-- Section Heading -->
+          <h3 class="text-center text-2xl mt-2 md:mt-4">Specific Count</h3>
+          <p id="count-number" class="my-3 text-center text-xl">0</p>
+          <div class="my-3">
+            <input
+              name=""
+              id="timer-input"
+              class="border border-lime-300 w-1/2 px-2"
+              placeholder="Number to be counted"
+            />
+          </div>
+          <button id="start-count" class="bg-lime-500 p-3 rounded-md mr-2">
+            Start
+          </button>
+          <button id="stop-count" class="bg-lime-500 p-3 rounded-md mr-2">
+            Stop
+          </button>
+          <button
+            id="resume-count"
+            class="hidden bg-lime-500 p-3 rounded-md mr-2"
+          >
+            Resume
+          </button>
+          <button id="reset-count" class="bg-lime-500 p-3 rounded-md mr-2">
+            Reset
+          </button>
+        </div>
+      </section>
+      <!-- specific-count-started -->
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
